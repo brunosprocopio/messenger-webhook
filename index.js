@@ -38,7 +38,7 @@ app.post('/webhook', function (req, res) {
     var data = req.body;
 
     // Make sure this is a page subscription
-    if (data.object == 'page') {
+    if (data.object === 'page') {
         // Iterate over each entry
         // There may be multiple if batched
         data.entry.forEach(function (pageEntry) {
@@ -121,13 +121,13 @@ function callSendAPI(messageData) {
         method: 'POST',
         json: messageData
     }, function (error, response, body) {
-        if (!error && response.statusCode == 200) {
+        if (!error && response.statusCode === 200) {
             var recipientId = body.recipient_id;
             var messageId = body.message_id;
 
             console.log("Successfully sent generic message with id %s to recipient %s", messageId, recipientId);
         } else {
-            console.error("Unable to send message.")
+            console.error("Unable to send message.");
             console.error(response);
             console.error(error);
         }
